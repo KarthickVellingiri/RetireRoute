@@ -1,5 +1,7 @@
 # RetireRoute
 
+[![Deploy to GitHub Pages](https://github.com/KarthickVellingiri/RetireRoute/actions/workflows/pages.yml/badge.svg)](https://github.com/KarthickVellingiri/RetireRoute/actions/workflows/pages.yml)
+
 **RetireRoute** is a private, browser-based retirement and debt-payoff planner for comparing two cash-flow strategies:
 
 - **Grow First** — invest until the inflation-adjusted retirement corpus is reached, then redirect cash flow to debt.
