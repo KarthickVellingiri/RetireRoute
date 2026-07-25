@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RetireRoute — Retirement Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="projection.css" />
+  <link rel="stylesheet" href="simulation.css" />
+  <link rel="stylesheet" href="wizard.css" />
+  <link rel="stylesheet" href="modal.css" />
+  <link rel="stylesheet" href="modal-table.css" />
+  <link rel="stylesheet" href="bonus.css" />
+  <link rel="stylesheet" href="shell.css" />
+</head>
+<body>
+  <header class="app-header">
+    <a class="top-brand" href="#plan" data-step-target="goals"><img src="assets/retirerouter-mark.svg" alt="RetireRouter logo"><span>RetireRouter<small>RETIREMENT PLANNER</small></span></a>
+    <nav class="top-nav" aria-label="Planner sections"><button class="active" data-step-target="goals">Plan</button><button data-step-target="investments">Investments</button><button data-step-target="loans">Loans & SIP</button><button data-step-target="compare">Compare</button></nav>
+    <button class="ghost-button" id="resetBtn">↻ Reset example</button>
+  </header>
+
+  <main>
+    <header class="page-header">
+      <div><p class="eyebrow">RETIREMENT PLANNER</p><h1>Build your path to financial freedom.</h1><p class="subtitle">See the trade-off between investing for retirement first and clearing debt first.</p></div>
+    </header>
+
+    <div class="wizard-bar" aria-label="Plan steps"><button class="active" data-step-target="goals"><span>1</span> Goals</button><i></i><button data-step-target="investments"><span>2</span> Investments</button><i></i><button data-step-target="loans"><span>3</span> Loans & SIP</button><i></i><button data-step-target="compare"><span>4</span> Compare</button></div>
+    <section class="hero-grid step-panel" id="plan" data-step-panel="goals">
+      <div class="card profile-card">
+        <div class="card-heading"><div><p class="eyebrow">YOUR TIMELINE</p><h2>Set the destination</h2></div><span class="step">01</span></div>
+        <div class="fields three">
+          <label>Current age<input id="currentAge" type="number" value="32" min="18" max="80"><small>years old</small></label>
+          <label>Target retirement age<input id="retireAge" type="number" value="45" min="25" max="100"><small>years old</small></label>
+          <label>Inflation assumption<input id="inflation" type="number" value="6" step="0.1" min="0"><small>% yearly</small></label>
+        </div>
+        <div class="target-row"><div><span class="label-title">Retirement corpus in today’s money</span><span class="hint">A 25× annual-expenses rule is a useful starting point.</span></div><label class="currency-input"><span>₹</span><input id="corpus" type="number" value="40000000" min="0"></label></div>
+        <div class="expense-line"><span>Optional quick estimate from monthly expenses</span><input id="monthlyExpense" type="number" value="65000" min="0"><span>× 12 × 25 =</span><strong id="estimatedCorpus">₹1.95 Cr</strong><button id="useEstimate" class="text-button">Use this</button></div>
+      </div>
+      <div class="card outcome-card">
+        <p class="eyebrow">AT A GLANCE</p><div class="big-number" id="bestYear">—</div><p class="big-label" id="bestLabel">Complete your details to calculate</p>
+        <div class="outcome-stats"><div><span>Target corpus</span><strong id="targetDisplay">₹2.00 Cr</strong></div><div><span>Invested today</span><strong id="investedDisplay">₹0</strong></div></div>
+        <div class="progress-track"><div id="progressFill"></div></div><p class="progress-copy" id="progressText">Add investments to see your starting progress.</p>
+      </div>
+    </section>
+    <div class="wizard-actions step-panel" data-step-panel="goals"><span>Step 1 of 4</span><button class="calculate next-step" data-next="investments">Continue to investments <b>→</b></button></div>
+
+    <section class="card section-card step-panel" id="investments" data-step-panel="investments">
+      <div class="card-heading"><div><p class="eyebrow">02 · CURRENT INVESTMENTS</p><h2>What is already working for you?</h2><p class="caption">Add each category with its current value and expected annual return.</p></div><button class="add-button" data-add="investment">+ Add category</button></div>
+      <div class="table-wrap"><table><thead><tr><th>Investment category</th><th>Current value</th><th>Expected growth / year</th><th></th></tr></thead><tbody id="investmentRows"></tbody></table></div>
+      <div class="total-line"><span>Total investments today</span><strong id="investmentTotal">₹0</strong></div>
+    </section>
+    <div class="wizard-actions step-panel" data-step-panel="investments"><button class="back-step" data-next="goals">← Back</button><span>Step 2 of 4</span><button class="calculate next-step" data-next="loans">Continue to loans <b>→</b></button></div>
+
+    <section class="two-col step-panel" data-step-panel="loans">
+      <section class="card section-card" id="loans">
+        <div class="card-heading"><div><p class="eyebrow">03 · LOANS</p><h2>Debt you carry today</h2><p class="caption">Add the outstanding balance, rate, EMI and remaining tenure. When tenure is entered, the projection derives the payment needed to close the loan on schedule.</p></div><button class="add-button" data-add="loan">+ Add loan</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Loan</th><th>Outstanding</th><th>Interest</th><th>Monthly EMI</th><th>Remaining tenure</th><th></th></tr></thead><tbody id="loanRows"></tbody></table></div>
+        <div class="total-line"><span>Total outstanding</span><strong id="loanTotal">₹0</strong></div>
+      </section>
+      <section class="card sip-card">
+        <div class="card-heading"><div><p class="eyebrow">04 · MONTHLY INVESTING</p><h2>Your SIP habit</h2><p class="caption">This amount rises every year at the rate you set.</p></div><span class="step">04</span></div>
+        <div class="sip-fields"><label>Current monthly SIP<span class="input-wrap"><span>₹</span><input id="sip" type="number" value="110000" min="0"></span></label><label>Expected annual SIP increase<span class="input-wrap"><input id="sipIncrease" type="number" value="10" min="0" step="0.5"><span>%</span></span></label><label>Annual bonus / extra income<span class="input-wrap"><span>₹</span><input id="annualBonus" type="number" value="0" min="0"></span></label><label>Bonus receipt month<span class="input-wrap"><select id="bonusMonth"><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></span></label></div>
+        <div class="info-box"><span>✦</span><p>Bonus follows your strategy automatically: it invests while building the corpus, pre-pays debt while debt is the priority, and returns to investments once you are debt-free.</p></div>
+      </section>
+    </section>
+    <div class="wizard-actions step-panel" data-step-panel="loans"><button class="back-step" data-next="investments">← Back</button><span>Step 3 of 4</span><button class="calculate next-step" data-next="compare">See my comparison <b>→</b></button></div>
+
+    <section class="comparison step-panel" id="compare" data-step-panel="compare">
+      <div class="comparison-header"><div><p class="eyebrow">YOUR TWO POSSIBLE PATHS</p><h2>Which route gets you retirement-ready sooner?</h2></div><button class="calculate" id="calculateBtn">Calculate my plan <span>→</span></button></div>
+      <div class="strategy-grid">
+        <article class="strategy-card invest"><div class="strategy-top"><div class="strategy-icon">↗</div><span class="tag">GROW FIRST</span></div><h3>Invest first, then prepay</h3><p>Keep investing while you pay your existing EMIs. Once the inflation-adjusted corpus is met, redirect SIP + EMIs to clear the loans.</p><div class="result"><span>Corpus achieved and debt-free</span><strong id="investResult">—</strong><small id="investSub">—</small></div><div class="mini-metrics"><span>Debt at completion <b id="investDebt">—</b></span><span>At age <b id="investAge">—</b></span></div><button class="projection-trigger" data-open-projection="invest">View year-by-year projection <span>→</span></button></article>
+        <article class="strategy-card debt recommended"><div class="ribbon">RECOMMENDED</div><div class="strategy-top"><div class="strategy-icon">⌁</div><span class="tag">CLEAR FIRST</span></div><h3>Prepay loans, then invest</h3><p>Redirect your SIP plus EMIs to debt. When clear, invest the full combined amount every month.</p><div class="result"><span>Corpus achieved and debt-free</span><strong id="debtResult">—</strong><small id="debtSub">—</small></div><div class="mini-metrics"><span>Debt-free in <b id="debtFree">—</b></span><span>At age <b id="debtAge">—</b></span></div><button class="projection-trigger" data-open-projection="debt">View year-by-year projection <span>→</span></button></article>
+      </div>
+      <div class="simulation-notes"><p><strong>Monthly simulation convention:</strong> each month applies nominal annual rate ÷ 12 to every asset and loan, then allocates that month’s cash flow. SIP and bonus contributions go pro-rata only to the 12% risk assets.</p><p><strong>Clear First assumption:</strong> contractual EMIs are paid on every active loan, then the stepped-up SIP, annual bonus, and every EMI freed by paid-off loans are immediately recycled to the highest-rate remaining loan (avalanche).</p><p id="investMilestone"></p><p id="debtMilestone"></p><p id="finishGap"></p></div>
+      <p class="method-note">This is an illustrative projection. Returns, inflation, taxes, fees and changes in income can materially affect actual results.</p>
+      <div class="wizard-actions compare-actions"><button class="back-step" data-next="loans">← Edit loans & SIP</button><span>Step 4 of 4</span><button class="back-step" data-next="goals">Start over</button></div>
+    </section>
+  </main>
+  <dialog class="projection-modal" id="projectionModal"><div class="modal-head"><div><p class="eyebrow">MONTH-BY-MONTH WORKING</p><h2 id="projectionModalTitle">Projection</h2><p class="caption">Click the + beside a year to reveal its monthly compounding, cash flow and loan balances.</p></div><button class="modal-close" id="closeProjection" aria-label="Close projection">×</button></div><div class="modal-content" id="projectionModalContent"></div></dialog>
+  <footer class="app-footer">Built with love, a little fear, and compound interest — <strong>Karthick Vellingiri</strong></footer>
+  <template id="investmentTemplate"><tr><td><input class="name" value="Equity mutual funds" aria-label="Investment category"></td><td><span class="cell-input currency">₹<input class="amount" type="number" value="0" min="0"></span></td><td><span class="cell-input"><input class="rate" type="number" value="12" step="0.1" min="0">%</span></td><td><button class="remove" title="Remove row">×</button></td></tr></template>
+  <template id="loanTemplate"><tr><td><input class="name" value="Home loan" aria-label="Loan name"></td><td><span class="cell-input currency">₹<input class="principal" type="number" value="0" min="0"></span></td><td><span class="cell-input"><input class="rate" type="number" value="8.5" step="0.1" min="0">%</span></td><td><span class="cell-input currency">₹<input class="emi" type="number" value="0" min="0"></span></td><td><span class="cell-input"><input class="tenure" type="number" value="0" min="0" placeholder="e.g. 180">months</span></td><td><button class="remove" title="Remove row">×</button></td></tr></template>
+  <script src="app.js"></script>
+</body>
+</html>
