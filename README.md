@@ -1,5 +1,11 @@
 # RetireRoute
 
+<p align="center">
+  <img src="assets/logo.png" alt="RetireRoute logo" width="120" />
+  <br />
+  <strong>Plan Today. Grow Tomorrow. Retire Free.</strong>
+</p>
+
 [![Deploy to GitHub Pages](https://github.com/KarthickVellingiri/RetireRoute/actions/workflows/pages.yml/badge.svg)](https://github.com/KarthickVellingiri/RetireRoute/actions/workflows/pages.yml)
 
 **RetireRoute** is a private, browser-based retirement and debt-payoff planner for comparing two cash-flow strategies:
