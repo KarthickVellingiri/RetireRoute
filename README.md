@@ -13,7 +13,7 @@
 - **Grow First** — invest until the inflation-adjusted retirement corpus is reached, then redirect cash flow to debt.
 - **Clear First** — clear loans first, then invest the SIP and recycled EMIs.
 
-All calculations run locally in the browser. No financial details are sent to a server.
+All calculations run locally in the browser. No financial details are sent to a server. The repository ships with anonymous demo values only.
 
 ## First-time setup
 
@@ -39,7 +39,9 @@ You may also open `index.html` directly, though a local server is the most relia
 4. Optionally add a fixed **annual bonus / extra income** and select the month in which you normally receive it.
 5. In **Compare**, open either year-by-year projection and expand a year with `+` to inspect the individual simulated months.
 
-The plan is automatically saved in this browser on this device. **Reset example** restores the supplied sample plan.
+The plan is automatically saved in this browser on this device. **Reset demo** restores the supplied anonymous sample plan.
+
+Use **Export input.json** to download your current inputs as a private JSON backup. Use **Import input.json** to restore that JSON on another browser or device. Use **Export full plan** to download a report containing the inputs plus both strategy outputs, yearly chart data, and monthly projection tables. Keep exported files private; they can contain your financial details.
 
 ## Calculation methodology
 
@@ -54,6 +56,13 @@ The app uses a single identical month-by-month engine for both paths:
 For **Clear First**, the stepped-up SIP, annual bonus, and EMIs freed by paid-off loans are redirected immediately to the highest-rate remaining loan (the debt avalanche method). Once debt-free, this combined cash flow is invested.
 
 For **Grow First**, SIP and annual bonus are invested until the portfolio first reaches the inflation-adjusted target. Thereafter, SIP, bonus, and freed EMIs are redirected to the highest-rate loan until debt-free. The plan finishes only once it is both debt-free and at or above the inflation-adjusted target.
+
+## Privacy and storage
+
+- RetireRoute stores your current plan in this browser's `localStorage`.
+- Your inputs are not uploaded anywhere by this static app.
+- Exported `input.json` and full-plan JSON files are created locally and may contain sensitive financial data.
+- Do not commit exported plan files or personal values to a public repository.
 
 ## Important notes
 

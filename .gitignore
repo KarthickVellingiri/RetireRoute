@@ -1,3 +1,7 @@
 .DS_Store
 Thumbs.db
 *.log
+input*.json
+retireroute-plan*.json
+retireroute-full-plan*.json
+private-plan*.json

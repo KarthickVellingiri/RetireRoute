@@ -21,7 +21,7 @@
   <header class="app-header">
     <a class="top-brand" href="#plan" data-step-target="goals"><img src="assets/logo.png" alt="RetireRoute logo" onerror="this.onerror=null;this.src='assets/retireroute-mark.svg';"><span>RetireRouter<small>RETIREMENT PLANNER</small></span></a>
     <nav class="top-nav" aria-label="Planner sections"><button class="active" data-step-target="goals">Plan</button><button data-step-target="investments">Investments</button><button data-step-target="loans">Loans & SIP</button><button data-step-target="compare">Compare</button></nav>
-    <button class="ghost-button" id="resetBtn">↻ Reset example</button>
+    <div class="plan-actions"><button class="ghost-button" id="importBtn">Import input.json</button><button class="ghost-button" id="exportInputBtn">Export input.json</button><button class="ghost-button" id="exportReportBtn">Export full plan</button><button class="ghost-button" id="resetBtn">↻ Reset demo</button><input id="importPlanFile" type="file" accept="application/json,.json" hidden></div>
   </header>
 
   <main>
@@ -34,12 +34,12 @@
       <div class="card profile-card">
         <div class="card-heading"><div><p class="eyebrow">YOUR TIMELINE</p><h2>Set the destination</h2></div><span class="step">01</span></div>
         <div class="fields three">
-          <label>Current age<input id="currentAge" type="number" value="32" min="18" max="80"><small>years old</small></label>
-          <label>Target retirement age<input id="retireAge" type="number" value="45" min="25" max="100"><small>years old</small></label>
+          <label>Current age<input id="currentAge" type="number" value="30" min="18" max="80"><small>years old</small></label>
+          <label>Target retirement age<input id="retireAge" type="number" value="50" min="25" max="100"><small>years old</small></label>
           <label>Inflation assumption<input id="inflation" type="number" value="6" step="0.1" min="0"><small>% yearly</small></label>
         </div>
-        <div class="target-row"><div><span class="label-title">Retirement corpus in today’s money</span><span class="hint">A 25× annual-expenses rule is a useful starting point.</span></div><label class="currency-input"><span>₹</span><input id="corpus" type="number" value="40000000" min="0"></label></div>
-        <div class="expense-line"><span>Optional quick estimate from monthly expenses</span><input id="monthlyExpense" type="number" value="65000" min="0"><span>× 12 × 25 =</span><strong id="estimatedCorpus">₹1.95 Cr</strong><button id="useEstimate" class="text-button">Use this</button></div>
+        <div class="target-row"><div><span class="label-title">Retirement corpus in today’s money</span><span class="hint">A 25× annual-expenses rule is a useful starting point.</span></div><label class="currency-input"><span>₹</span><input id="corpus" type="number" value="20000000" min="0"></label></div>
+        <div class="expense-line"><span>Optional quick estimate from monthly expenses</span><input id="monthlyExpense" type="number" value="50000" min="0"><span>× 12 × 25 =</span><strong id="estimatedCorpus">₹1.50 Cr</strong><button id="useEstimate" class="text-button">Use this</button></div>
       </div>
       <div class="card outcome-card">
         <p class="eyebrow">AT A GLANCE</p><div class="big-number" id="bestYear">—</div><p class="big-label" id="bestLabel">Complete your details to calculate</p>
@@ -64,7 +64,7 @@
       </section>
       <section class="card sip-card">
         <div class="card-heading"><div><p class="eyebrow">04 · MONTHLY INVESTING</p><h2>Your SIP habit</h2><p class="caption">This amount rises every year at the rate you set.</p></div><span class="step">04</span></div>
-        <div class="sip-fields"><label>Current monthly SIP<span class="input-wrap"><span>₹</span><input id="sip" type="number" value="110000" min="0"></span></label><label>Expected annual SIP increase<span class="input-wrap"><input id="sipIncrease" type="number" value="10" min="0" step="0.5"><span>%</span></span></label><label>Annual bonus / extra income<span class="input-wrap"><span>₹</span><input id="annualBonus" type="number" value="0" min="0"></span></label><label>Bonus receipt month<span class="input-wrap"><select id="bonusMonth"><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></span></label></div>
+        <div class="sip-fields"><label>Current monthly SIP<span class="input-wrap"><span>₹</span><input id="sip" type="number" value="40000" min="0"></span></label><label>Expected annual SIP increase<span class="input-wrap"><input id="sipIncrease" type="number" value="8" min="0" step="0.5"><span>%</span></span></label><label>Annual bonus / extra income<span class="input-wrap"><span>₹</span><input id="annualBonus" type="number" value="100000" min="0"></span></label><label>Bonus receipt month<span class="input-wrap"><select id="bonusMonth"><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></span></label></div>
         <div class="info-box"><span>✦</span><p>Bonus follows your strategy automatically: it invests while building the corpus, pre-pays debt while debt is the priority, and returns to investments once you are debt-free.</p></div>
       </section>
     </section>
