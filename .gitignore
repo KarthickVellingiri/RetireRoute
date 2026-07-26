@@ -4,4 +4,5 @@ Thumbs.db
 input*.json
 retireroute-plan*.json
 retireroute-full-plan*.json
+retireroute-full-plan*.pdf
 private-plan*.json

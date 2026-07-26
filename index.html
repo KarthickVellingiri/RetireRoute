@@ -21,7 +21,12 @@
   <header class="app-header">
     <a class="top-brand" href="#plan" data-step-target="goals"><img src="assets/logo.png" alt="RetireRoute logo" onerror="this.onerror=null;this.src='assets/retireroute-mark.svg';"><span>RetireRouter<small>RETIREMENT PLANNER</small></span></a>
     <nav class="top-nav" aria-label="Planner sections"><button class="active" data-step-target="goals">Plan</button><button data-step-target="investments">Investments</button><button data-step-target="loans">Loans & SIP</button><button data-step-target="compare">Compare</button></nav>
-    <div class="plan-actions"><button class="ghost-button" id="importBtn">Import input.json</button><button class="ghost-button" id="exportInputBtn">Export input.json</button><button class="ghost-button" id="exportReportBtn">Export full plan</button><button class="ghost-button" id="resetBtn">↻ Reset</button><input id="importPlanFile" type="file" accept="application/json,.json" hidden></div>
+    <div class="plan-actions">
+          <button class="icon-button" id="importBtn" type="button" aria-label="Import input.json" title="Import input.json"><span aria-hidden="true">⇪</span></button>
+          <button class="icon-button" id="exportPdfBtn" type="button" aria-label="Export PDF" title="Export PDF"><span aria-hidden="true">⇩</span></button>
+          <button class="icon-button" id="resetBtn" type="button" aria-label="Reset demo" title="Reset demo"><span aria-hidden="true">↻</span></button>
+          <input id="importPlanFile" type="file" accept="application/json,.json" hidden>
+        </div>
   </header>
 
   <main>
@@ -82,7 +87,7 @@
     </section>
   </main>
   <dialog class="projection-modal" id="projectionModal"><div class="modal-head"><div><p class="eyebrow">MONTH-BY-MONTH WORKING</p><h2 id="projectionModalTitle">Projection</h2><p class="caption">Click the + beside a year to reveal its monthly compounding, cash flow and loan balances.</p></div><button class="modal-close" id="closeProjection" aria-label="Close projection">×</button></div><div class="modal-content" id="projectionModalContent"></div></dialog>
-  <footer class="app-footer">Built with love, a little fear, and compound interest — <strong><a href="https://github.com/KarthickVellingiri" target="_blank" rel="noopener noreferrer">Karthick Vellingiri</a></strong></footer>
+  <footer class="app-footer">Built with <span class="heart">♥</span>, a little fear, and compound interest — <strong><a href="https://github.com/KarthickVellingiri" target="_blank" rel="noopener noreferrer">Karthick Vellingiri</a></strong></footer>
   <template id="investmentTemplate"><tr><td><input class="name" value="Equity mutual funds" aria-label="Investment category"></td><td><span class="cell-input currency">₹<input class="amount" type="number" value="0" min="0"></span></td><td><span class="cell-input"><input class="rate" type="number" value="12" step="0.1" min="0">%</span></td><td><button class="remove" title="Remove row">×</button></td></tr></template>
   <template id="loanTemplate"><tr><td><input class="name" value="Home loan" aria-label="Loan name"></td><td><span class="cell-input currency">₹<input class="principal" type="number" value="0" min="0"></span></td><td><span class="cell-input"><input class="rate" type="number" value="8.5" step="0.1" min="0">%</span></td><td><span class="cell-input currency">₹<input class="emi" type="number" value="0" min="0"></span></td><td><span class="cell-input"><input class="tenure" type="number" value="0" min="0" placeholder="e.g. 180">months</span></td><td><button class="remove" title="Remove row">×</button></td></tr></template>
   <script src="app.js"></script>

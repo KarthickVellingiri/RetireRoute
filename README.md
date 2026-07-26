@@ -41,7 +41,7 @@ You may also open `index.html` directly, though a local server is the most relia
 
 The plan is automatically saved in this browser on this device. **Reset demo** restores the supplied anonymous sample plan.
 
-Use **Export input.json** to download your current inputs as a private JSON backup. Use **Import input.json** to restore that JSON on another browser or device. Use **Export full plan** to download a report containing the inputs plus both strategy outputs, yearly chart data, and monthly projection tables. Keep exported files private; they can contain your financial details.
+Use **Export input.json** to download your current inputs as a private JSON backup. Use **Import input.json** to restore that JSON on another browser or device. Use **Export PDF** for a human-readable report you can print or save as PDF. Keep exported files private; they can contain your financial details.
 
 ## Calculation methodology
 
@@ -61,7 +61,7 @@ For **Grow First**, SIP and annual bonus are invested until the portfolio first 
 
 - RetireRoute stores your current plan in this browser's `localStorage`.
 - Your inputs are not uploaded anywhere by this static app.
-- Exported `input.json` and full-plan JSON files are created locally and may contain sensitive financial data.
+- Exported `input.json` and PDF reports are created locally and may contain sensitive financial data.
 - Do not commit exported plan files or personal values to a public repository.
 
 ## Important notes
